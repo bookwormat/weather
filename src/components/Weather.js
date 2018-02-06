@@ -6,10 +6,25 @@ import {clear, loadWeather} from "../actions";
 const Weather = (props) => {
   return (
     <div>
-      <button type="button" onClick={props.loadWeather}>Load Weather</button>
-      <button type="button" onClick={props.clear}>Clear</button>
-      <WeatherDetails {...props} />
+      <Locations {...props} />
+      <WeatherDetails />
     </div>
+  );
+};
+
+const Locations = (props) => {
+  return (
+    <ul>
+      {props.locations.map(location =>
+        <li key={location.city}>
+          {location.city}
+          <button type="button" onClick={() => props.loadWeather()}>Load</button>
+        </li>
+      )}
+      <li key={clear}>
+        <button type="button" onClick={() => props.clear()}>Clear</button>
+      </li>
+    </ul>
   );
 };
 
