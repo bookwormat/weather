@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {createEpicMiddleware} from 'redux-observable';
 import {Provider} from 'react-redux';
 import weather from './reducers';
@@ -9,7 +9,14 @@ import {rootEpic} from "./epics";
 
 const epicMiddleWare = createEpicMiddleware(rootEpic);
 
-const store = createStore(weather, applyMiddleware(epicMiddleWare));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  weather,
+  composeEnhancers(
+    applyMiddleware(epicMiddleWare)
+  )
+);
 
 ReactDOM.render(
   <Provider store={store}>
