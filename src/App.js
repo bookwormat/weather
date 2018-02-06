@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Weather from "./components/Weather";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Weather />
+        <Weather/>
       </div>
     );
   }

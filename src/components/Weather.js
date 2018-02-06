@@ -27,20 +27,18 @@ const Locations = (props) => {
 const WeatherDetails = (props) => {
   return (
     <div>
-  {props.loading && <p>loading...</p>}
-  <pre><code>{JSON.stringify(props.current, null, 2)}</code></pre>
+      {props.loading && <p>loading...</p>}
+      <pre><code>{JSON.stringify(props.current, null, 2)}</code></pre>
     </div>
   )
 };
 
-const mapStateToProps = (state) => {
-  return state;
-};
+const mapStateToProps = (state) => ({
+  state
+});
 
-const mapDispatch = (dispatch) => {
-  return {
-    loadWeather: (location) => dispatch(fetchWeatherAction(location)),
-  }
-};
+const mapDispatch = (dispatch) => ({
+  loadWeather: (location) => dispatch(fetchWeatherAction(location)),
+});
 
 export default connect(mapStateToProps, mapDispatch)(Weather);
