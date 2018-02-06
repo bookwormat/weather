@@ -16,11 +16,11 @@ const initialState = {
   loading: false,
 };
 
-const weather = (state = initialState, action) => {
+const weatherReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default weather;
+export default weatherReducer;
