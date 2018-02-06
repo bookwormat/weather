@@ -1,12 +1,15 @@
 import {Observable} from 'rxjs';
 import {combineEpics} from 'redux-observable'
-import {clear, LOAD_WEATHER} from "../actions";
+import {FETCH_WEATHER, fetchWeatherSuccessAction} from "../actions";
 
-const loadWeatherEpic = (action$) => {
-  return action$.ofType(LOAD_WEATHER)
-    .switchMap(() => {
-      return Observable.of(clear()).delay(2000);
-    })
+const fetchWeatherEpic = (action$) => {
+  return action$.ofType(FETCH_WEATHER)
+    .switchMap(({payload}) => {
+      return Observable.ajax.getJSON('/api/bb405a593d3a67d1/conditions/q/Austria/Vienna.json')
+        .map(payload => {
+          return fetchWeatherSuccessAction(payload)
+        })
+  });
 };
 
-export const rootEpic = combineEpics(loadWeatherEpic);
+export const rootEpic = combineEpics(fetchWeatherEpic);

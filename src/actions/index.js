@@ -1,10 +1,12 @@
-export const LOAD_WEATHER = 'LOAD_WEATHER';
-export const CLEAR_WEATHER = 'CLEAR_WEATHER';
+export const FETCH_WEATHER = 'FETCH_WEATHER';
+export const FETCH_WEATHER_SUCCESS= 'FETCH_WEATHER_SUCCESS';
 
-export const loadWeather = () => ({
-  type: LOAD_WEATHER
+export const fetchWeatherAction = (location) => ({
+  type: FETCH_WEATHER,
+  payload: location,
 });
 
-export const clear = () => ({
-  type: CLEAR_WEATHER
+export const fetchWeatherSuccessAction = (weather) => ({
+  type: FETCH_WEATHER_SUCCESS,
+  payload: weather,
 });

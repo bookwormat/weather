@@ -1,3 +1,4 @@
+import {FETCH_WEATHER, FETCH_WEATHER_SUCCESS} from "../actions";
 
 const initialState = {
   locations: [
@@ -18,6 +19,18 @@ const initialState = {
 
 const weatherReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_WEATHER:
+      return {
+        ...state,
+        current: null,
+        loading: true,
+      };
+    case FETCH_WEATHER_SUCCESS:
+      return {
+        ...state,
+        current: action.payload,
+        loading: false,
+      };
     default:
       return state;
   }

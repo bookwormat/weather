@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {clear, loadWeather} from "../actions";
-
+import {fetchWeatherAction, fetchWeatherSuccessAction} from "../actions";
 
 const Weather = (props) => {
   return (
     <div>
       <Locations {...props} />
-      <WeatherDetails />
+      <WeatherDetails {...props} />
     </div>
   );
 };
@@ -18,18 +17,20 @@ const Locations = (props) => {
       {props.locations.map(location =>
         <li key={location.city}>
           {location.city}
-          <button type="button" onClick={() => props.loadWeather()}>Load</button>
+          <button type="button" onClick={() => props.loadWeather(location)}>Load</button>
         </li>
       )}
-      <li key={clear}>
-        <button type="button" onClick={() => props.clear()}>Clear</button>
-      </li>
     </ul>
   );
 };
 
 const WeatherDetails = (props) => {
-  return <pre><code>{JSON.stringify(props, null, 2)}</code></pre>;
+  return (
+    <div>
+  {props.loading && <p>loading...</p>}
+  <pre><code>{JSON.stringify(props.current, null, 2)}</code></pre>
+    </div>
+  )
 };
 
 const mapStateToProps = (state) => {
@@ -38,8 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadWeather: () => dispatch(loadWeather()),
-    clear: () => dispatch(clear()),
+    loadWeather: (location) => dispatch(fetchWeatherAction(location)),
   }
 };
 
