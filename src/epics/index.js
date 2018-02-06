@@ -1,9 +1,11 @@
 import {Observable} from 'rxjs';
 import {combineEpics} from 'redux-observable'
-import {FETCH_WEATHER, fetchWeatherSuccessAction} from "../actions";
+import {FETCH_WEATHER, fetchWeatherErrorAction, fetchWeatherSuccessAction} from "../actions";
 
 const ajax = ({region, city}) =>
-  Observable.ajax.getJSON(`/api/bb405a593d3a67d1/conditions/q/${region}/${city}.json`);
+  region === 'CA'
+? Observable.throw(new Error("FAILED"))
+  : Observable.ajax.getJSON(`/api/bb405a593d3a67d1/conditions/q/${region}/${city}.json`);
 
 
 const fetchWeatherEpic = (action$) => {
@@ -12,6 +14,9 @@ const fetchWeatherEpic = (action$) => {
       return ajax(payload)
         .map(payload => {
           return fetchWeatherSuccessAction(payload)
+        })
+        .catch(err => {
+          return Observable.of(fetchWeatherErrorAction(err));
         })
   });
 };

@@ -1,4 +1,4 @@
-import {FETCH_WEATHER, FETCH_WEATHER_SUCCESS} from "../actions";
+import {FETCH_WEATHER, FETCH_WEATHER_ERROR, FETCH_WEATHER_SUCCESS} from "../actions";
 
 const initialState = {
   locations: [
@@ -15,6 +15,7 @@ const initialState = {
   ],
   current: null,
   loading: false,
+  error: null,
 };
 
 const weatherReducer = (state = initialState, action) => {
@@ -24,13 +25,22 @@ const weatherReducer = (state = initialState, action) => {
         ...state,
         current: null,
         loading: true,
+        error: null,
       };
     case FETCH_WEATHER_SUCCESS:
       return {
         ...state,
         current: action.payload,
         loading: false,
+        error: null,
       };
+    case FETCH_WEATHER_ERROR:
+      return {
+        ...state,
+        current: null,
+        loading: false,
+        error: action.error,
+      }
     default:
       return state;
   }

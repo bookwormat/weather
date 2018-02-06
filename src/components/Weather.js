@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchWeatherAction, fetchWeatherSuccessAction} from "../actions";
+import {fetchWeatherAction} from "../actions";
 
 const Weather = (props) => {
   return (
@@ -28,14 +28,16 @@ const WeatherDetails = (props) => {
   return (
     <div>
       {props.loading && <p>loading...</p>}
+      {props.error && <p>ERROR!</p>}
       <pre><code>{JSON.stringify(props.current, null, 2)}</code></pre>
     </div>
   )
 };
 
-const mapStateToProps = (state) => ({
-  state
-});
+const mapStateToProps = (state) => {
+  return state;
+};
+
 
 const mapDispatch = (dispatch) => ({
   loadWeather: (location) => dispatch(fetchWeatherAction(location)),
