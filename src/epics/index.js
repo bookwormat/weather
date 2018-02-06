@@ -5,7 +5,8 @@ import {FETCH_WEATHER, fetchWeatherSuccessAction} from "../actions";
 const fetchWeatherEpic = (action$) => {
   return action$.ofType(FETCH_WEATHER)
     .switchMap(({payload}) => {
-      return Observable.ajax.getJSON('/api/bb405a593d3a67d1/conditions/q/Austria/Vienna.json')
+      const { region, city } = payload;
+      return Observable.ajax.getJSON(`/api/bb405a593d3a67d1/conditions/q/${region}/${city}.json`)
         .map(payload => {
           return fetchWeatherSuccessAction(payload)
         })
