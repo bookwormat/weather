@@ -3,9 +3,7 @@ import {combineEpics} from 'redux-observable'
 import {FETCH_WEATHER, fetchWeatherErrorAction, fetchWeatherSuccessAction} from "../actions";
 
 const ajax = ({region, city}) =>
-  region === 'CA'
-? Observable.throw(new Error("FAILED"))
-  : Observable.ajax.getJSON(`/api/bb405a593d3a67d1/conditions/q/${region}/${city}.json`);
+  Observable.ajax.getJSON(`/api/bb405a593d3a67d1/conditions/q/${region}/${city}.json`);
 
 
 const fetchWeatherEpic = (action$) => {
