@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {activateLocationAction, clearLocationAction} from "../actions";
 
 const Locations = (props) =>
   <ul>
@@ -13,4 +15,13 @@ const Locations = (props) =>
     </li>
   </ul>;
 
-export default Locations;
+
+const mapStateToProps = (state) =>
+  state;
+
+const mapDispatch = (dispatch) => ({
+  activateLocation: (location) => dispatch(activateLocationAction(location)),
+  clearLocation: () => dispatch(clearLocationAction()),
+});
+
+export default connect(mapStateToProps, mapDispatch)(Locations);
