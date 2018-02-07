@@ -1,24 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
+import ActiveLocation from "./ActiveLocation";
 import {activateLocationAction, clearLocationAction} from "../actions";
-
+import AvailableLocations from "./AvailableLocations";
 
 const Locations = (props) =>
-  <ul>
-    {props.availableLocations.map(location =>
-      <li key={location.name}>
-        <button type="button" onClick={() => props.activateLocation(location)}>{location.name}</button>
-      </li>
-    )}
-    <hr />
-    <li>
-      <button type="button" onClick={() => props.clearLocation()}>Clear</button>
-    </li>
-  </ul>;
-
+  <div>
+    <AvailableLocations {...props} />
+    <ActiveLocation {...props} />
+  </div>
 
 const mapStateToProps = (state) => ({
-  availableLocations: state.locations.availableLocations
+  availableLocations: state.locations.availableLocations,
+  activeLocation: state.locations.activeLocation,
 });
 
 const mapDispatch = (dispatch) => ({

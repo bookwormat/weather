@@ -1,12 +1,10 @@
 import React from 'react';
-import Locations from "./Locations";
 import WeatherResult from "./WeatherResult";
-import ActiveLocation from "./ActiveLocation";
+import Locations from "./Locations";
 
 const WeatherPage = () =>
   <div>
     <Locations />
-    <ActiveLocation />
     <WeatherResult />
   </div>;
 

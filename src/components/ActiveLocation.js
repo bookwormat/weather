@@ -1,13 +1,8 @@
 import React from 'react';
-import {connect} from "react-redux";
 
-const ActiveLocation = (props) =>
+const ActiveLocation = ({activeLocation}) =>
   <div>
-    {props.activeLocation && <h1>Weather in {props.activeLocation.name}</h1>}
+    {activeLocation && <h1>Weather in {activeLocation.name}</h1>}
   </div>;
 
-const mapStateToProps = (state) => ({
-  activeLocation: state.locations.activeLocation,
-});
-
-export default connect(mapStateToProps)(ActiveLocation);
+export default ActiveLocation;
