@@ -3,15 +3,17 @@ import {ACTIVATE_LOCATION, CLEAR_LOCATION, FETCH_WEATHER, FETCH_WEATHER_ERROR, F
 const initialState = {
   locations: [
     {
-      region: 'CA',
-      city: 'San Francisco',
-      id: 1
+      name: 'Waldviertel',
+      pws: 'INIEDERS714',
     },
     {
-      region: 'Austria',
-      city: 'Vienna',
-      id: 2
+      name: 'Wien',
+      pws: 'IWIEN159',
     },
+    {
+      name: 'Venice, LA',
+      pws: 'KCALOSAN697',
+    }
   ],
   current: null,
   activeLocation: null,
@@ -51,7 +53,9 @@ const weatherReducer = (state = initialState, action) => {
       return {
         ...state,
         activeLocation: null,
-        current: null
+        current: null,
+        loading: null,
+        error: null
       };
     default:
       return state;

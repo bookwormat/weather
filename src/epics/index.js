@@ -5,15 +5,15 @@ import {
   FETCH_WEATHER, fetchWeatherAction, fetchWeatherErrorAction, fetchWeatherSuccessAction
 } from "../actions";
 
-const ajax = ({region, city}) =>
-  Observable.ajax.getJSON(`/api/bb405a593d3a67d1/conditions/q/pws:INIEDERS714.json?_=${new Date().getTime()}`);
-
+const ajax = ({pws}) =>
+  Observable.ajax.getJSON(`/api/bb405a593d3a67d1/conditions/q/pws:${pws}.json?_=${new Date().getTime()}`);
 
 const fetchWeatherEpic = (action$) =>
   action$
     .ofType(FETCH_WEATHER)
     .switchMap(({location}) => {
       return ajax(location)
+        .takeUntil(action$.ofType(CLEAR_LOCATION))
         .map(result => {
           return fetchWeatherSuccessAction(result)
         })

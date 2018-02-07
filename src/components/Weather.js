@@ -12,8 +12,8 @@ const Weather = (props) =>
 const Locations = (props) =>
   <ul>
     {props.locations.map(location =>
-      <li key={location.city}>
-        <button type="button" onClick={() => props.activateLocation(location)}>{location.city}</button>
+      <li key={location.name}>
+        <button type="button" onClick={() => props.activateLocation(location)}>{location.name}</button>
       </li>
     )}
     <hr />
@@ -24,7 +24,7 @@ const Locations = (props) =>
 
 const ActiveLocation = (props) =>
   <div>
-    {props.activeLocation && <h1>Weather in {props.activeLocation.city}</h1>}
+    {props.activeLocation && <h1>Weather in {props.activeLocation.name}</h1>}
   </div>;
 
 const WeatherDetails = (props) =>
@@ -37,7 +37,6 @@ const WeatherDetails = (props) =>
 
 const mapStateToProps = (state) =>
   state;
-
 
 const mapDispatch = (dispatch) => ({
   activateLocation: (location) => dispatch(activateLocationAction(location)),
