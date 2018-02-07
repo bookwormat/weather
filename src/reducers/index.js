@@ -1,4 +1,4 @@
-import {FETCH_WEATHER, FETCH_WEATHER_ERROR, FETCH_WEATHER_SUCCESS} from "../actions";
+import {ACTIVATE_LOCATION, CLEAR_LOCATION, FETCH_WEATHER, FETCH_WEATHER_ERROR, FETCH_WEATHER_SUCCESS} from "../actions";
 
 const initialState = {
   locations: [
@@ -14,6 +14,7 @@ const initialState = {
     },
   ],
   current: null,
+  activeLocation: null,
   loading: false,
   error: null,
 };
@@ -40,6 +41,17 @@ const weatherReducer = (state = initialState, action) => {
         current: null,
         loading: false,
         error: action.error,
+      };
+    case ACTIVATE_LOCATION:
+      return {
+        ...state,
+        activeLocation: action.location,
+      };
+    case CLEAR_LOCATION:
+      return {
+        ...state,
+        activeLocation: null,
+        current: null
       };
     default:
       return state;
