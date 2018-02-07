@@ -2,7 +2,8 @@ import {Observable} from 'rxjs';
 import {combineEpics} from 'redux-observable'
 import {
   ACTIVATE_LOCATION, CLEAR_LOCATION,
-  FETCH_WEATHER, fetchWeatherAction, fetchWeatherErrorAction, fetchWeatherSuccessAction
+  FETCH_WEATHER, FETCH_WEATHER_CANCEL, fetchWeatherAction, fetchWeatherCancel, fetchWeatherErrorAction,
+  fetchWeatherSuccessAction
 } from "../actions";
 
 const ajax = ({pws}) =>
@@ -13,7 +14,7 @@ const fetchWeatherEpic = (action$) =>
     .ofType(FETCH_WEATHER)
     .switchMap(({location}) => {
       return ajax(location)
-        .takeUntil(action$.ofType(CLEAR_LOCATION))
+        .takeUntil(action$.ofType(FETCH_WEATHER_CANCEL))
         .map(result => {
           return fetchWeatherSuccessAction(result)
         })
@@ -22,16 +23,21 @@ const fetchWeatherEpic = (action$) =>
         })
     });
 
+const clearAllEpic = (action$) =>
+  action$
+    .ofType(CLEAR_LOCATION)
+    .mapTo(fetchWeatherCancel());
+
 const activateWeatherEpic = (action$) =>
   action$
     .ofType(ACTIVATE_LOCATION)
     .switchMap(({location}) => {
-      return Observable.timer(0, 10000)
-        .takeUntil(action$.ofType(CLEAR_LOCATION))
-        .map(() => {
-          return fetchWeatherAction(location)
-        })
+        return Observable.timer(0, 10000)
+          .takeUntil(action$.ofType(CLEAR_LOCATION))
+          .map(() => {
+            return fetchWeatherAction(location)
+          })
       }
     );
 
-export const rootEpic = combineEpics(fetchWeatherEpic, activateWeatherEpic);
+export const rootEpic = combineEpics(fetchWeatherEpic, activateWeatherEpic, clearAllEpic);
