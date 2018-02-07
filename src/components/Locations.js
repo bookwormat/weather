@@ -8,7 +8,7 @@ const Locations = (props) =>
   <div>
     <AvailableLocations {...props} />
     <ActiveLocation {...props} />
-  </div>
+  </div>;
 
 const mapStateToProps = (state) => ({
   availableLocations: state.locations.availableLocations,

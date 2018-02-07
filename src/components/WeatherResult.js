@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 const WeatherResult = (props) =>
   <div>
     {props.loading && <p>loading...</p>}
-    {props.error && <p>An error occured: {props.error.message}</p>}
+    {props.error && <p>An error occurred: {props.error.message}</p>}
     {props.weather && <p>Last update: {props.weather.time}</p>}
     {props.weather && <p>Wind degrees: {props.weather.wind}</p>}
     {props.weather && <p>Temp Cº: {props.weather.temp}</p>}
