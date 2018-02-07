@@ -5,7 +5,7 @@ import {activateLocationAction, clearLocationAction} from "../actions";
 
 const Locations = (props) =>
   <ul>
-    {props.locations.map(location =>
+    {props.availableLocations.map(location =>
       <li key={location.name}>
         <button type="button" onClick={() => props.activateLocation(location)}>{location.name}</button>
       </li>
@@ -18,7 +18,7 @@ const Locations = (props) =>
 
 
 const mapStateToProps = (state) => ({
-  locations: state.locations
+  availableLocations: state.locations.availableLocations
 });
 
 const mapDispatch = (dispatch) => ({

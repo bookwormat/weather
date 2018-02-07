@@ -7,7 +7,7 @@ const ActiveLocation = (props) =>
   </div>;
 
 const mapStateToProps = (state) => ({
-  activeLocation: state.activeLocation,
+  activeLocation: state.locations.activeLocation,
 });
 
 export default connect(mapStateToProps)(ActiveLocation);

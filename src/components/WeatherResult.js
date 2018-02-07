@@ -24,7 +24,7 @@ const WeatherResult = (props) =>
   };
 
 const mapStateToProps = (state) => ({
-  weather: getWeather(state.result),
+  weather: getWeather(state.weather.result),
 });
 
 export default connect(mapStateToProps)(WeatherResult);
