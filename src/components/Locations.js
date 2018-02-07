@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {activateLocationAction, clearLocationAction} from "../actions";
 
+
 const Locations = (props) =>
   <ul>
     {props.locations.map(location =>
@@ -16,8 +17,9 @@ const Locations = (props) =>
   </ul>;
 
 
-const mapStateToProps = (state) =>
-  state;
+const mapStateToProps = (state) => ({
+  locations: state.locations
+});
 
 const mapDispatch = (dispatch) => ({
   activateLocation: (location) => dispatch(activateLocationAction(location)),
