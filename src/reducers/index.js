@@ -18,7 +18,7 @@ const initialState = {
       pws: 'KCALOSAN697',
     }
   ],
-  current: null,
+  result: null,
   activeLocation: null,
   loading: false,
   error: null,
@@ -29,28 +29,28 @@ const weatherReducer = (state = initialState, action) => {
     case FETCH_WEATHER:
       return {
         ...state,
-        current: null,
+        result: null,
         loading: true,
         error: null,
       };
     case FETCH_WEATHER_SUCCESS:
       return {
         ...state,
-        current: action.result,
+        result: action.result,
         loading: false,
         error: null,
       };
     case FETCH_WEATHER_ERROR:
       return {
         ...state,
-        current: null,
+        result: null,
         loading: false,
         error: action.error,
       };
     case FETCH_WEATHER_CANCEL:
       return {
         ...state,
-        current: null,
+        result: null,
         loading: false,
         error: null,
       };

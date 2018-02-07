@@ -10,11 +10,11 @@ const WeatherResult = (props) =>
     {props.weather && <p>Temp Cº: {props.weather.temp}</p>}
   </div>;
 
-  const getWeather = (current) => {
-    if (current === null) {
+  const getWeather = (result) => {
+    if (result === null) {
       return null;
     }
-    const {current_observation} = current;
+    const {current_observation} = result;
     const {observation_time_rfc822, wind_degrees, temp_c} = current_observation;
     return {
       time: observation_time_rfc822,
@@ -24,7 +24,7 @@ const WeatherResult = (props) =>
   };
 
 const mapStateToProps = (state) => ({
-  weather: getWeather(state.current),
+  weather: getWeather(state.result),
 });
 
 export default connect(mapStateToProps)(WeatherResult);
