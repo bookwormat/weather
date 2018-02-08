@@ -4,7 +4,11 @@ const AvailableLocations = (props) =>
   <ul>
     {props.availableLocations.map(location =>
       <li key={location.name}>
-        <button type="button" onClick={() => props.activateLocation(location)}>{location.name}</button>
+        <button type="button"
+                disabled={props.activeLocation === location}
+                onClick={() => props.activateLocation(location)}>
+          {location.name}
+                </button>
       </li>
     )}
     <hr/>
