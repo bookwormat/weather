@@ -11,9 +11,9 @@ const initialState = {
       pws: 'IWIEN159',
     },
     {
-      name: 'Venice, LA',
-      pws: 'KCALOSAN697',
-    }
+      name: 'Witsand',
+      pws: 'IWESTERN688',
+    },
   ],
   activeLocation: null,
 };
