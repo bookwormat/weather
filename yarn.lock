@@ -1623,6 +1623,12 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
+css-in-js-utils@2.0.0, css-in-js-utils@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.0.tgz#5af1dd70f4b06b331f48d22a3d86e0786c0b9435"
+  dependencies:
+    hyphenate-style-name "^1.0.2"
+
 css-loader@0.28.7:
   version "0.28.7"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.7.tgz#5f2ee989dd32edd907717f953317656160999c1b"
@@ -2457,6 +2463,10 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
+fast-loops@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fast-loops/-/fast-loops-1.0.0.tgz#2cdd7e0ff67343b2b5f5e627d855a50b4bed559a"
+
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
@@ -2496,6 +2506,47 @@ fbjs@^0.8.16:
     promise "^7.1.1"
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
+
+fela-bindings@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/fela-bindings/-/fela-bindings-1.3.4.tgz#f48887dfed8c0948d851af14b18434d902cb034f"
+  dependencies:
+    fast-loops "^1.0.0"
+    fela-dom "^7.0.4"
+    fela-tools "^5.1.2"
+    shallow-equal "^1.0.0"
+
+fela-dom@^7.0.4:
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-7.0.4.tgz#30a159d12142c5cec376608a5dd1d4395462c4a0"
+  dependencies:
+    css-in-js-utils "^2.0.0"
+    fast-loops "^1.0.0"
+    fela-utils "^8.0.3"
+
+fela-tools@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.1.2.tgz#c6760b42d72116911c2c0341b6d880cfc11c76a8"
+  dependencies:
+    css-in-js-utils "2.0.0"
+    fast-loops "^1.0.0"
+    fela "^6.1.3"
+    fela-utils "^8.0.3"
+
+fela-utils@^8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-8.0.3.tgz#4a1728e7f5711e26f6f37da9c85a6b270c84c466"
+  dependencies:
+    css-in-js-utils "^2.0.0"
+    fast-loops "^1.0.0"
+
+fela@^6.1.3:
+  version "6.1.3"
+  resolved "https://registry.yarnpkg.com/fela/-/fela-6.1.3.tgz#c3bc8726dada63c23914bed9ca79d902e61e9a74"
+  dependencies:
+    css-in-js-utils "2.0.0"
+    fast-loops "^1.0.0"
+    fela-utils "^8.0.3"
 
 figures@^2.0.0:
   version "2.0.0"
@@ -3080,6 +3131,10 @@ http-signature@~1.2.0:
 https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
+
+hyphenate-style-name@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
 
 iconv-lite@0.4.19, iconv-lite@^0.4.17, iconv-lite@~0.4.13:
   version "0.4.19"
@@ -5002,7 +5057,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -5161,6 +5216,14 @@ react-dom@^16.2.0:
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
+
+react-fela@^6.2.4:
+  version "6.2.4"
+  resolved "https://registry.yarnpkg.com/react-fela/-/react-fela-6.2.4.tgz#18e5984c22d8eb8921ed4c43500a5f7608b91c40"
+  dependencies:
+    fela-bindings "^1.3.4"
+    fela-dom "^7.0.4"
+    prop-types "^15.5.8"
 
 react-redux@^5.0.6:
   version "5.0.6"
@@ -5690,6 +5753,10 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+shallow-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"
 
 shebang-command@^1.2.0:
   version "1.2.0"
