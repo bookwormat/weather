@@ -6,6 +6,8 @@ import {createEpicMiddleware} from 'redux-observable';
 import {Provider} from 'react-redux';
 import weatherReducer from './reducers';
 import {rootEpic} from "./epics";
+import {Provider as FelaProvider} from 'react-fela';
+import {createRenderer} from 'fela';
 
 const epicMiddleWare = createEpicMiddleware(rootEpic);
 
@@ -18,8 +20,13 @@ const store = createStore(
   )
 );
 
+const renderer = createRenderer();
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App/>
-  </Provider>,
-  document.getElementById('root'));
+  <FelaProvider renderer={renderer}>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </FelaProvider>,
+document.getElementById('root')
+);
