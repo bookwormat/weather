@@ -12,16 +12,11 @@ const ajax = ({pws}) =>
 const fetchWeatherEpic = (action$) =>
   action$
     .ofType(FETCH_WEATHER)
-    .switchMap(({location}) => {
-      return ajax(location)
+    .switchMap(({location}) => ajax(location)
         .takeUntil(action$.ofType(FETCH_WEATHER_CANCEL))
-        .map(result => {
-          return fetchWeatherSuccessAction(result)
-        })
-        .catch(err => {
-          return Observable.of(fetchWeatherErrorAction(err));
-        })
-    });
+        .map(result => fetchWeatherSuccessAction(result))
+        .catch(err => Observable.of(fetchWeatherErrorAction(err)))
+    );
 
 const clearAllEpic = (action$) =>
   action$
@@ -31,13 +26,9 @@ const clearAllEpic = (action$) =>
 const activateWeatherEpic = (action$) =>
   action$
     .ofType(ACTIVATE_LOCATION)
-    .switchMap(({location}) => {
-        return Observable.timer(0, 10000)
+    .switchMap(({location}) => Observable.timer(0, 10000)
           .takeUntil(action$.ofType(CLEAR_LOCATION))
-          .map(() => {
-            return fetchWeatherAction(location)
-          })
-      }
+          .map(() => fetchWeatherAction(location))
     );
 
 export const rootEpic = combineEpics(fetchWeatherEpic, activateWeatherEpic, clearAllEpic);
