@@ -6,9 +6,9 @@ import {
   fetchWeatherSuccessAction
 } from "../actions";
 
-const API_KEY = 'bb405a593d3a67d1';
 // You can get a wunderground API key at 
 // https://www.wunderground.com/weather/api
+const API_KEY = 'wunderground_api_key';
 
 const ajax = ({pws}) =>
   Observable.ajax.getJSON(`/api/${API_KEY}/conditions/q/pws:${pws}.json?_=${new Date().getTime()}`);
